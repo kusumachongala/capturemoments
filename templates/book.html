@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Photographer</title>
+  <style>
+    body {
+      background-color: #ecf0f1;
+      font-family: Arial;
+      padding-top: 50px;
+      text-align: center;
+    }
+    form {
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+    }
+    label {
+      display: block;
+      text-align: left;
+      margin: 10px 0 5px 10%;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    input, button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px;
+      width: 80%;
+      font-size: 16px;
+    }
+    button {
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <h2>Book a Photographer</h2>
+  <!-- ✅ Display message if set -->
+  {% if message %}
+    <div>{{ message|safe }}</div>
+  {% endif %}
+
+  <form method="POST">
+    <label for="photographer_id">Photographer ID</label>
+    <input type="text" id="photographer_id" name="photographer_id" placeholder="Photographer ID" required>
+
+    <label for="user_id">Your User ID</label>
+    <input type="text" id="user_id" name="user_id" placeholder="Your User ID" required>
+
+    <label for="datePicker">Booking Date</label>
+    <input type="date" id="datePicker" name="date" title="Select a booking date" required>
+
+    <button type="submit">Book Now</button>
+  </form>
+
+  <script>
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById("datePicker").setAttribute('min', today);
+  </script>
+</body>
